@@ -32,3 +32,12 @@ Main:
 5. Deploy süreçlerinde her bölge için ayrı deploy senaryoları oluşturulmalıdır.
 
 
+#Mimari
+1. Microservice mimarisi kullanılır.Hem deploy edilmesi hem yönetimi daha rahat olur. Monolith yapıya hakimiyetin ve adaptasyonun da zor olacağı düşünülünce bu bana mantıklı geldi
+2. İstek tek bir servise gelir. Orada jwt tokendan user ayrımı ile ilgili parçalamalar (hangi servise gidecek, parametrelerin ayrışması) yapılır. 
+3. Sadece bu servisten gelen isteklere cevap verecek şekilde mikroservislerin instanceleri ayarlanır.
+4. Go dilinde bu servis yazılırsa istekleri karşılamada ve yük dağıtımında bir sorun yaşanmayacaktır.
+5. Request bu servise gelir. Mikroservise istek iletilir. Ardından mikroservisten gelen cevap işlenip şifrelenerek gerekirse client a iletilir.
+6. msgpack paketi kullanılabilir.
+
+<img src="images/servis.png" alt="alt text" width="320" height="180">
