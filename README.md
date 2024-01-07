@@ -1,0 +1,1 @@
+<img src="images/ana_plan.png" alt="alt text" width="320" height="180">
