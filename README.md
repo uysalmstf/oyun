@@ -40,4 +40,3 @@ Main:
 5. Request bu servise gelir. Mikroservise istek iletilir. Ardından mikroservisten gelen cevap işlenip şifrelenerek gerekirse client a iletilir.
 6. msgpack paketi kullanılabilir.
 
-<img src="images/servis.png" alt="alt text" width="320" height="180">
