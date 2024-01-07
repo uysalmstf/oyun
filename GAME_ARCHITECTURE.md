@@ -1,6 +1,5 @@
 #ANA PLAN
-
-<img src="images/ana_plan.png" alt="alt text" width="320" height="180">
+<img src="images/ana_isleyis.png" width="320" height="200">
 
 ##Açıklamalar
 1. Özellikler geliştirilip feature a pushlanıyor
@@ -39,4 +38,27 @@ Main:
 4. Go dilinde bu servis yazılırsa istekleri karşılamada ve yük dağıtımında bir sorun yaşanmayacaktır.
 5. Request bu servise gelir. Mikroservise istek iletilir. Ardından mikroservisten gelen cevap işlenip şifrelenerek gerekirse client a iletilir.
 6. msgpack paketi kullanılabilir.
+
+<img src="images/ana_plan.png" width="320" height="200">
+Imagelerin yüklenmesinde AWS S3 servisi kullanılabilir. Depolama alanı orası olur. CDN özelliğinden faydanılmalıdır.
+
+Oyuna belirli bir süre girmeyen insanların datalarını AWS Dynamodb ye kayıt ederek, fazla redis kaynağı kullanımından kurtulabiliriz.
+
+USER İşleyişi
+1. Her user kayıt olurken arka planda bir kullanıcı adı ve şifre belirlenir. Kullanıcının giriş tipi user datasında tutulur ancak aslolan bu username ve password olacaktır.
+2. İleride user hesabında bir kontrol sağlanırken bu username ile hesaba giriş gerçekleştirilebilir.
+3. Rediste user keyinde data tutulur. Başta her regionun kendi localinde userlar sıralanır. Sonrasında eklenen özellik gerektirirse ufak gecikme ile de olsa istenen regiondaki user datasına erişilebilir.
+4. Data çekmek için jwt tokendan alınan userid ile işlem yapılmalıdır.
+
+MATCHMAKING
+1. Region bazlı olmalıdır.
+2. Level bazlı olmnalıdır.
+3. ELO/MMR puanlarına göre istek yapılmalıdır.
+4. Online user havuuz gezilerek istenen filtrelerde user var ise o user ile eşleştirilir. 
+5. Oyuncu bulunamazsa bot servisinden bot user istenir ve onunla oyuna devam edilebilir. Bot, oyun sonunda silinmelidir.
+
+REWARD DISTRUBITION
+1. Hızlı reward kazanımı için userid, reward tipi ve miktarı içeren bir istek mikroservise atılarak user datasına işlenme yapılabilir.
+2. Herhangibir şekilde (admin panelinden örneğin) user ın inboxuna ödül atılacaksa ve aciliyeti yoksa istek kafka producer ına atılır. producer isteği topiklere yazar. Consumer bu isteği alıp, user ın inboxuna işler.
+
 
