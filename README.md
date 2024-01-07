@@ -10,7 +10,7 @@
 5. Test regionunda da bir sorun çıkmazsa direk dünyaya kodu ve özellikleri de panelden olacak şekilde yayılır
 
 
-##Makina Özellikleri
+#Makina Özellikleri
 
 Feature Makinası: 
 1. ec2 instance olarak t2.micro ayağa kaldırılabilir.
